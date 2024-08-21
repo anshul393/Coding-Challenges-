@@ -8,7 +8,7 @@ type TokenType int
 func (t TokenType) String() string {
 	switch t {
 	case ILLEGAL:
-		return "illegal"
+		return "ILLEGAL"
 	case EOF:
 		return "EOF"
 	case IDENT:
@@ -19,6 +19,19 @@ func (t TokenType) String() string {
 		return "="
 	case PLUS:
 		return "+"
+	case MINUS:
+		return "-"
+	case BANG:
+		return "!"
+	case ASTERISK:
+		return "*"
+	case SLASH:
+		return "/"
+	case LT:
+		return "<"
+	case GT:
+		return ">"
+
 	case COMMA:
 		return ","
 	case SEMICOLON:
@@ -41,6 +54,8 @@ func (t TokenType) String() string {
 }
 
 type Token struct {
+	// + return PLUS tokentype
+	// "" return EOF tokentype
 	Literal string
 	Type    TokenType
 }
@@ -56,6 +71,12 @@ const (
 	// OPERATORS
 	ASSIGN
 	PLUS
+	MINUS
+	BANG
+	ASTERISK
+	SLASH
+	LT
+	GT
 
 	// DELIMETERS
 	COMMA
@@ -69,4 +90,33 @@ const (
 	// KEYWORDS
 	FUNCTION
 	LET
+	TRUE
+	FALSE
+	IF
+	ELSE
+	RETURN
 )
+
+func NewToken(literal string, tokenType TokenType) Token {
+	return Token{Literal: literal, Type: tokenType}
+}
+
+func GetToken(literal string) Token {
+
+	// words --> KeyWords, Identifier
+	keywordMap := map[string]TokenType{
+		"fn":     FUNCTION,
+		"let":    LET,
+		"true":   TRUE,
+		"false":  FALSE,
+		"if":     IF,
+		"else":   ELSE,
+		"return": RETURN,
+	}
+
+	if tokentype, ok := keywordMap[literal]; ok {
+		return NewToken(literal, tokentype)
+	}
+
+	return NewToken(literal, IDENT)
+}

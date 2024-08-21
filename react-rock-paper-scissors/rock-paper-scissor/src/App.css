@@ -1,0 +1,50 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font: "Barlow Semi Condensed";
+    --font-600: 600;
+    --font-700: 700
+}
+
+/* body {
+    position: relative;
+    border: 2px solid;
+} */
+
+.rules h2 {
+    text-transform: uppercase;
+    font-family: var(--font);
+    font-weight: var(--font-600);
+    /* font: var(--font-700); */
+    padding: 1em;
+    font-size: 1.7rem;
+    color: hsl(229, 25%, 31%);
+    position: relative;
+}
+
+.rules img {
+    display: block;
+    padding: 1em;
+    margin-inline: auto;
+    border: 2px solid blue;
+    position: relative;
+}
+
+.rules {
+    border: 2px solid red;
+    max-width: 450px;
+    /* margin-inline: auto; */
+    position: relative;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+}
+
+
+.container {
+    /* position: relative */
+}
